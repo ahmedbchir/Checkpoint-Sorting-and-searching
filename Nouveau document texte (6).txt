@@ -1,0 +1,39 @@
+PROCEDURE insertion(n:INTEGER, VAR tab : ARRAY_OF INTEGER)
+VAR
+    i,j,key : INTEGER;    
+BEGIN
+    FOR i FROM 1 TO n-1 STEP 1  DO
+        key := tab[i];
+        j := i-1;
+        WHILE ((j >= 0) && (tab[j] > key)) DO
+            tab[j+1] := tab[j];
+            j := j-1;
+        END_WHILE
+        tab[j+1] := key;
+    END_FOR
+END
+
+PROCEDURE afficher(n:INTEGER, VAR tab : ARRAY_OF INTEGER)
+VAR
+    i : INTEGER;    
+BEGIN
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        write(tab[i] + ' ');
+    END_FOR
+END
+
+ALGORITHM insertion_sort
+VAR
+    arr : ARRAY_OF INTEGER[20];
+    n,i : INTEGER;
+BEGIN
+    write("enter the size of the vectors: ");
+    read(n);
+
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        read(arr[i]);
+    END_FOR
+
+    insertion(n,arr);
+    afficher(n,arr);
+END
